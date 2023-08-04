@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,15 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+
+Route::get('/send-email', function () {
+    $name = "Webster";
+
+    Mail::to('evansmwenda.em@gmail.com')->send(new TestMail($name));
+
+    dd("email has been sent");
+});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
