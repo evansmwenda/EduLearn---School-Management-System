@@ -12,13 +12,14 @@ use Illuminate\Queue\SerializesModels;
 class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $mailData;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(private $name)
+    public function __construct($mailData)
     {
-        //
+        $this->mailData = $mailData;
     }
 
     /**
@@ -38,7 +39,6 @@ class TestMail extends Mailable
     {
         return new Content(
             view: 'emails.test-email',
-            with: ['name' => $this->name],
         );
     }
 

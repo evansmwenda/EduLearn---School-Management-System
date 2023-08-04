@@ -24,9 +24,14 @@ Auth::routes();
 
 
 Route::get('/send-email', function () {
-    $name = "Webster";
+    $mailData = [
+        'title' => 'Send mail from Nicesnippets.com',
+        'body' => 'This is for testing email using smtp.'
+    ];
 
-    Mail::to('evansmwenda.em@gmail.com')->send(new TestMail($name));
+
+
+    Mail::to('evansmwenda.em@gmail.com')->send(new TestMail($mailData));
 
     dd("email has been sent");
 });
